@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /diagnosis
+Allow: /consultation/online
+Allow: /consultation/onsite
+Allow: /blog
+Allow: /blog/*
+
+# Sitemap location
+Sitemap: https://tabib-alnabat.com/sitemap.xml
+Sitemap: https://tabib-alnabat.orcatech.online/sitemap.xml
