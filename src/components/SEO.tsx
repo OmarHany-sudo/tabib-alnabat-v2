@@ -18,21 +18,23 @@ const SEO = ({
 }: SEOProps) => {
   const location = useLocation();
   
-  // Base domain handling without hardcoding
-  const currentDomain = window.location.origin;
-  const targetDomain = 'https://tabib-alnabat.com';
+  // ✅ Fixed domain (production)
+  const domain = 'https://tabib-alnabat.orcatech.online';
   
   // Create canonical URL
   const path = location.pathname;
-  const canonicalUrl = canonical || `${targetDomain}${path}`;
+  const canonicalUrl = canonical || `${domain}${path}`;
 
   useEffect(() => {
-    // Update Title
+    // Title
     const baseTitle = "طبيب النباتات";
-    const fullTitle = title ? `${title} | ${baseTitle}` : "طبيب النباتات - تشخيص أمراض النباتات بالذكاء الاصطناعي";
+    const fullTitle = title 
+      ? `${title} | ${baseTitle}` 
+      : "طبيب النباتات - تشخيص أمراض النباتات بالذكاء الاصطناعي";
+
     document.title = fullTitle;
 
-    // Update Meta Description
+    // Meta Description
     let metaDescription = document.querySelector('meta[name="description"]');
     const defaultDescription = "منصة ذكية لتشخيص أمراض النباتات وربط المزارعين بالخبراء الزراعيين";
     const finalDescription = description || defaultDescription;
@@ -46,7 +48,7 @@ const SEO = ({
       document.head.appendChild(metaDescription);
     }
 
-    // Update Canonical Link
+    // Canonical
     let linkCanonical = document.querySelector('link[rel="canonical"]');
     if (linkCanonical) {
       linkCanonical.setAttribute('href', canonicalUrl);
@@ -74,7 +76,7 @@ const SEO = ({
     updateOgTag('og:description', finalDescription);
     updateOgTag('og:type', type);
     updateOgTag('og:url', canonicalUrl);
-    updateOgTag('og:image', `${targetDomain}${image}`);
+    updateOgTag('og:image', `${domain}${image}`);
     updateOgTag('og:locale', 'ar_AR');
 
     // Twitter Tags
@@ -93,7 +95,7 @@ const SEO = ({
     updateTwitterTag('twitter:card', 'summary_large_image');
     updateTwitterTag('twitter:title', fullTitle);
     updateTwitterTag('twitter:description', finalDescription);
-    updateTwitterTag('twitter:image', `${targetDomain}${image}`);
+    updateTwitterTag('twitter:image', `${domain}${image}`);
 
   }, [title, description, canonicalUrl, type, image]);
 
